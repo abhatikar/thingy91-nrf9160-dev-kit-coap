@@ -1,16 +1,16 @@
 menu "Telenor Managed IoT Cloud CoAP Application"
 
 config COAP_RESOURCE
-	string "CoAP resource path"
-	default ""
+  string "CoAP resource path"
+  default ""
 
 config COAP_SERVER_HOSTNAME
-	string "CoAP server hostname"
-	default "172.16.32.1"
+  string "CoAP server hostname"
+  default "172.16.32.1"
 
 config COAP_SERVER_PORT
-	int "CoAP server port"
-	default 5683
+  int "CoAP server port"
+  default 5683
 
 endmenu
 
