@@ -1,16 +1,12 @@
 menu "Telenor Managed IoT Cloud CoAP Application"
 
-config COAP_RESOURCE
-  string "CoAP resource path"
-  default ""
-
-config COAP_SERVER_HOSTNAME
-  string "CoAP server hostname"
-  default "172.16.32.1"
+config COAP_SERVER_IP
+	string "CoAP server IP address"
+	default "172.16.32.1"
 
 config COAP_SERVER_PORT
-  int "CoAP server port"
-  default 5683
+	int "CoAP server port"
+	default 5683
 
 endmenu
 
@@ -18,6 +14,6 @@ menu "Zephyr Kernel"
 source "$ZEPHYR_BASE/Kconfig.zephyr"
 endmenu
 
-module = APP
-module-str = Telenor MIC CoAP
+module = MAIN
+module-str = MAIN
 source "${ZEPHYR_BASE}/subsys/logging/Kconfig.template.log_config"
