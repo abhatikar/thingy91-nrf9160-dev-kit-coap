@@ -31,6 +31,8 @@ struct device *env_sensor_init() {
 }
 
 void env_sensor_sample(env_sensor_t *env_sensor) {
+  int err;
+
   // Null out
   env_sensor->temperature = 0.0;
   env_sensor->humidity    = 0.0;
@@ -47,15 +49,17 @@ void env_sensor_sample(env_sensor_t *env_sensor) {
   } else {
     struct sensor_value temperature, pressure, humidity, gas_res;
 
-	  sensor_sample_fetch(env_dev);
-    sensor_channel_get(env_dev, SENSOR_CHAN_AMBIENT_TEMP, &temperature);
-    sensor_channel_get(env_dev, SENSOR_CHAN_PRESS, &pressure);
-    sensor_channel_get(env_dev, SENSOR_CHAN_HUMIDITY, &humidity);
-    sensor_channel_get(env_dev, SENSOR_CHAN_GAS_RES, &gas_res);
+    err = sensor_sample_fetch(env_dev);
+    if (err == 0) {
+      sensor_channel_get(env_dev, SENSOR_CHAN_AMBIENT_TEMP, &temperature);
+      sensor_channel_get(env_dev, SENSOR_CHAN_PRESS, &pressure);
+      sensor_channel_get(env_dev, SENSOR_CHAN_HUMIDITY, &humidity);
+      sensor_channel_get(env_dev, SENSOR_CHAN_GAS_RES, &gas_res);
 
-    env_sensor->temperature = sensor_value_to_double(&temperature);
-    env_sensor->humidity    = sensor_value_to_double(&humidity);
-    env_sensor->pressure    = sensor_value_to_double(&pressure);
-    env_sensor->gas_res     = sensor_value_to_double(&gas_res);
+      env_sensor->temperature = sensor_value_to_double(&temperature);
+      env_sensor->humidity    = sensor_value_to_double(&humidity);
+      env_sensor->pressure    = sensor_value_to_double(&pressure);
+      env_sensor->gas_res     = sensor_value_to_double(&gas_res);
+    }
   }
 }

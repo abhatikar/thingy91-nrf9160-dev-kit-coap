@@ -31,6 +31,8 @@ struct device *light_sensor_init() {
 }
 
 void light_sensor_sample(light_sensor_t *light_sensor) {
+  int err;
+
   // Null out
   light_sensor->red   = 0;
   light_sensor->green = 0;
@@ -47,15 +49,17 @@ void light_sensor_sample(light_sensor_t *light_sensor) {
   } else {
     struct sensor_value red, green, blue, ir;
 
-	  sensor_sample_fetch(light_dev);
-    sensor_channel_get(light_dev, SENSOR_CHAN_RED, &red);
-    sensor_channel_get(light_dev, SENSOR_CHAN_GREEN, &green);
-    sensor_channel_get(light_dev, SENSOR_CHAN_BLUE, &blue);
-    sensor_channel_get(light_dev, SENSOR_CHAN_IR, &ir);
+    err = sensor_sample_fetch(light_dev);
+    if (err == 0) {
+      sensor_channel_get(light_dev, SENSOR_CHAN_RED, &red);
+      sensor_channel_get(light_dev, SENSOR_CHAN_GREEN, &green);
+      sensor_channel_get(light_dev, SENSOR_CHAN_BLUE, &blue);
+      sensor_channel_get(light_dev, SENSOR_CHAN_IR, &ir);
 
-    light_sensor->red   = sensor_value_to_double(&red);
-    light_sensor->green = sensor_value_to_double(&green);
-    light_sensor->blue  = sensor_value_to_double(&blue);
-    light_sensor->ir    = sensor_value_to_double(&ir);
+      light_sensor->red   = sensor_value_to_double(&red);
+      light_sensor->green = sensor_value_to_double(&green);
+      light_sensor->blue  = sensor_value_to_double(&blue);
+      light_sensor->ir    = sensor_value_to_double(&ir);
+    }
   }
 }

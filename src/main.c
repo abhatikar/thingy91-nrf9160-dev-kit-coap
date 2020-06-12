@@ -20,7 +20,6 @@
 #include <net/socket.h>
 #include <logging/log.h>
 
-#include "modem.h"
 #include "board.h"
 #include "led.h"
 
@@ -41,7 +40,6 @@ void main(void) {
   int err;
 
   board_init();
-  modem_init();
   coap_init(AF_INET);
 
   led_set_effect(LED_PATTERN_NORMAL);
@@ -57,9 +55,13 @@ void main(void) {
 
       led_set_effect(LED_PATTERN_SENDING);
 
-      board_dump_message(coap_buffer, sizeof(coap_buffer));
-      LOG_INF("Uplink payload: %s", log_strdup((char *)coap_buffer));
+      board_dump_modem_message(coap_buffer, sizeof(coap_buffer));
+      LOG_INF("Uplink payload (modem): %s", log_strdup((char *)coap_buffer));
+      err = coap_send_request(COAP_METHOD_POST, (struct sockaddr *)&remote_addr,
+                              NULL, coap_buffer, strlen(coap_buffer), NULL);
 
+      board_dump_message(coap_buffer, sizeof(coap_buffer));
+      LOG_INF("Uplink payload (sensor): %s", log_strdup((char *)coap_buffer));
       err = coap_send_request(COAP_METHOD_POST, (struct sockaddr *)&remote_addr,
                               NULL, coap_buffer, strlen(coap_buffer), NULL);
 
