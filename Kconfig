@@ -10,6 +10,18 @@ config COAP_SERVER_PORT
 
 endmenu
 
+menu "Sensors"
+
+config CONFIG_BME680
+	bool "Use BME680 (environment) sensor"
+	default y if BOARD_THINGY91_NRF9160NS
+
+config CONFIG_BH1749
+	bool "Use BH1749 (light) sensor"
+	default y if BOARD_THINGY91_NRF9160NS
+
+endmenu
+
 menu "Zephyr Kernel"
 source "$ZEPHYR_BASE/Kconfig.zephyr"
 endmenu

@@ -1,10 +1,6 @@
 /**
- *  Title:  nRF9160 Dev-Kit CoAP to Telenor Managed IoT Cloud (MIC) application.
- *  Author: Pontus Aurdal <pontus.aurdal@telenor.com>
- *  URL:    https://startiot.telenor.com
- * 
- * 
  *  Copyright (c) 2020 Telenor Norway ASA
+ *  Author: Pontus Aurdal <pontus.aurdal@telenor.com>
  * 
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -26,6 +22,7 @@
 
 #include "modem.h"
 #include "board.h"
+#include "led.h"
 
 #define LOG_LEVEL CONFIG_MAIN_LOG_LEVEL
 LOG_MODULE_REGISTER(MAIN);
@@ -43,10 +40,12 @@ void main(void) {
   s64_t next_send_time = SEND_INTERVAL_MS;
   int err;
 
-  modem_init();
   board_init();
+  modem_init();
   coap_init(AF_INET);
-  LOG_INF("Board inited!");
+
+  led_set_effect(LED_PATTERN_NORMAL);
+  LOG_INF("Board inited! %s", CONFIG_BOARD);
 
   net_addr_pton(AF_INET, CONFIG_COAP_SERVER_IP, &remote_addr.sin_addr);
 
@@ -56,11 +55,16 @@ void main(void) {
 
     if (k_uptime_get() >= next_send_time) {
 
+      led_set_effect(LED_PATTERN_SENDING);
+
       board_dump_message(coap_buffer, sizeof(coap_buffer));
       LOG_INF("Uplink payload: %s", log_strdup((char *)coap_buffer));
 
       err = coap_send_request(COAP_METHOD_POST, (struct sockaddr *)&remote_addr,
                               NULL, coap_buffer, strlen(coap_buffer), NULL);
+
+      k_sleep(K_MSEC(500));
+      led_set_effect(LED_PATTERN_NORMAL);
 
       // Todo: make CoAP GET request
       next_send_time += SEND_INTERVAL_MS;

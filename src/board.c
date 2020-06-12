@@ -6,11 +6,12 @@
 #include "board.h"
 #include "env_sensor.h"
 #include "light_sensor.h"
+#include "led.h"
 
 #define LOG_LEVEL CONFIG_BOARD_LOG_LEVEL
 LOG_MODULE_REGISTER(BOARD);
 
-MESSAGE last_message;
+static MESSAGE last_message;
 
 void board_init () {
   LOG_INF("Initialising board");
@@ -23,6 +24,10 @@ void board_init () {
     LOG_INF("Unable to initialize light sensor, falling back to simulated sensor.");
   }
 
+  if (NULL == led_init()) {
+    LOG_INF("Unable to initialize LED, darkness follows.");
+  }
+
 }
 
 void board_dump_message(u8_t *buffer, int len) {
@@ -30,6 +35,7 @@ void board_dump_message(u8_t *buffer, int len) {
   env_sensor_sample(&last_message.env_sensor);
   light_sensor_sample(&last_message.light_sensor);
   last_message.uptime = k_uptime_get() / 1000;
+
 
   snprintf(buffer, len, "%lld,%.2f,%.2f,%.2f,%.2f,%d,%d,%d,%d",
     last_message.uptime,
