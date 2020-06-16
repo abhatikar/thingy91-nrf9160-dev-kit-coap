@@ -6,10 +6,10 @@
 #define ENV_DEV "BME680"
 
 typedef struct {
-	float temperature;
-	float humidity;
-	float pressure;
-	float gas_res;
+  float temperature;
+  float humidity;
+  float pressure;
+  float gas_res;
 } env_sensor_t;
 
 struct device *env_sensor_init();

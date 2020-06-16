@@ -27,9 +27,9 @@ static void pwm_out(led_t *led, struct led_color *color) {
 }
 
 static void pwm_off(led_t *led) {
-	struct led_color nocolor = {0};
+  struct led_color nocolor = {0};
 
-	pwm_out(led, &nocolor);
+  pwm_out(led, &nocolor);
 }
 
 static void work_handler(struct k_work *work) {
@@ -42,7 +42,7 @@ static void work_handler(struct k_work *work) {
     int diff = (effect_step->color.c[i] - led.color.c[i]) /
       substeps_left;
     led.color.c[i] += diff;
-	}
+  }
 
   pwm_out(w_led, &led.color);
 
@@ -103,7 +103,7 @@ struct device *led_init() {
     }
 
     k_delayed_work_init(&led.work, work_handler);
-	  led_update(&led);
+    led_update(&led);
 
     return led.pwm_dev;
   }

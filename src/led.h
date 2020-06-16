@@ -9,7 +9,7 @@
 #define LED_BLUE_PIN  31
 
 struct led_color {
-	u8_t c[3];
+  u8_t c[3];
 };
 
 struct led_effect_step {
