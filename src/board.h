@@ -3,11 +3,13 @@
 #include "modem.h"
 #include "env_sensor.h"
 #include "light_sensor.h"
+#include "motion_sensor.h"
 
 typedef struct {
   modem_t modem;
   env_sensor_t env_sensor;
   light_sensor_t light_sensor;
+  motion_sensor_t motion_sensor;
   s64_t uptime;
 } MESSAGE;
 

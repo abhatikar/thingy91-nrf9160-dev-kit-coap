@@ -10,7 +10,7 @@ LOG_MODULE_REGISTER(MODEM);
 
 struct modem_param_info modem_param;
 
-void modem_init(void) {
+void modem_init() {
   int err;
 
 #if defined(CONFIG_LTE_LINK_CONTROL)
@@ -36,13 +36,14 @@ void modem_sample(modem_t *modem) {
   err = modem_info_params_get(&modem_param);
   if (err == 0) {
     modem->current_band = modem_param.network.current_band.value;
-    modem->sup_band = modem_param.network.sup_band.value;
     modem->area_code = modem_param.network.area_code.value;
-    modem->current_operator = modem_param.network.current_operator.value;
+    memcpy(&modem->current_operator, &modem_param.network.current_operator.value_string, 100);
     modem->mcc = modem_param.network.mcc.value;
     modem->mnc = modem_param.network.mnc.value;
-    modem->cellid_hex = modem_param.network.cellid_hex.value;
-    // modem->ip_address = modem_param.network.ip_address.value_string;
+    memcpy(&modem->cellid_hex, &modem_param.network.cellid_hex.value_string, 100);
     memcpy(&modem->ip_address, &modem_param.network.ip_address.value_string, 100);
+    memcpy(&modem->modem_fw, &modem_param.device.modem_fw.value_string, 100);
+    modem->battery = modem_param.device.battery.value;
+    modem->imei = modem_param.device.imei.value;
   }
 }

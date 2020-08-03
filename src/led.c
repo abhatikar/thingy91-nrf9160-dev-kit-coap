@@ -26,11 +26,13 @@ static void pwm_out(led_t *led, struct led_color *color) {
   }
 }
 
+/*
 static void pwm_off(led_t *led) {
   struct led_color nocolor = {0};
 
   pwm_out(led, &nocolor);
 }
+*/
 
 static void work_handler(struct k_work *work) {
   led_t *w_led = CONTAINER_OF(work, led_t, work);

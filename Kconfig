@@ -20,6 +20,10 @@ config CONFIG_BH1749
 	bool "Use BH1749 (light) sensor"
 	default y if BOARD_THINGY91_NRF9160NS
 
+config CONFIG_ADXL362
+	bool "Use ADXL362 (motion) sensor"
+	default y if BOARD_THINGY91_NRF9160NS
+
 endmenu
 
 menu "Zephyr Kernel"
