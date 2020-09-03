@@ -1,0 +1,12 @@
+manifest:
+  remotes:
+    - name: nordic
+      url-base: https://github.com/nrfconnect
+  projects:
+    - name: sdk-nrf
+      path: nrf
+      remote: nordic
+      revision: 91118ee73f48213a2fbb230721b3459279af7449
+      import: true
+  self:
+    path: telenor-coap

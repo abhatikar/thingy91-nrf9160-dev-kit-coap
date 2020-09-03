@@ -40,16 +40,16 @@ static struct sockaddr_in remote_addr = {
 int ccb(const struct coap_packet *response, struct coap_reply *reply, const struct sockaddr *from) {
   const uint8_t *payload;
   uint16_t payload_len;
-	uint8_t temp_buf[16];
+  uint8_t temp_buf[16];
 
   payload = coap_packet_get_payload(response, &payload_len);
 
-	snprintf(temp_buf, MAX(payload_len, sizeof(temp_buf)), "%s", payload);
+  snprintf(temp_buf, MAX(payload_len, sizeof(temp_buf)), "%s", payload);
 
   printk("CoAP response: code: 0x%x, payload: %s\n",
-	       coap_header_get_code(response), temp_buf);
+         coap_header_get_code(response), temp_buf);
 
-	return 0;
+  return 0;
 }
 
 void main(void) {
