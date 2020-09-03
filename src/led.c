@@ -63,7 +63,7 @@ static void work_handler(struct k_work *work) {
   }
 
   if (led.effect_step < led.effect->step_count) {
-    s32_t next_delay =
+    int32_t next_delay =
       led.effect->steps[led.effect_step].substep_time;
 
     k_delayed_work_submit(&led.work, K_MSEC(next_delay));
@@ -84,7 +84,7 @@ static void led_update(led_t *c_led) {
   __ASSERT_NO_MSG(c_led->effect->steps);
 
   if (c_led->effect->step_count > 0) {
-    s32_t next_delay =
+    int32_t next_delay =
       c_led->effect->steps[c_led->effect_step].substep_time;
 
     k_delayed_work_submit(&c_led->work, K_MSEC(next_delay));

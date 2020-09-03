@@ -15,9 +15,8 @@
  *  limitations under the License.
  */
 
-#include <stdio.h>
-
 #include <zephyr.h>
+#include <stdio.h>
 #include <net/coap.h>
 #include <net/coap_utils.h>
 #include <net/socket.h>
@@ -31,7 +30,7 @@ LOG_MODULE_REGISTER(MAIN);
 
 #define SEND_INTERVAL_MS 10000
 
-static u8_t coap_buffer[256];
+static uint8_t coap_buffer[256];
 
 static struct sockaddr_in remote_addr = {
   .sin_family = AF_INET,
@@ -39,9 +38,9 @@ static struct sockaddr_in remote_addr = {
 };
 
 int ccb(const struct coap_packet *response, struct coap_reply *reply, const struct sockaddr *from) {
-  const u8_t *payload;
-  u16_t payload_len;
-	u8_t temp_buf[16];
+  const uint8_t *payload;
+  uint16_t payload_len;
+	uint8_t temp_buf[16];
 
   payload = coap_packet_get_payload(response, &payload_len);
 
@@ -54,7 +53,7 @@ int ccb(const struct coap_packet *response, struct coap_reply *reply, const stru
 }
 
 void main(void) {
-  s64_t next_send_time = SEND_INTERVAL_MS;
+  int64_t next_send_time = SEND_INTERVAL_MS;
   int err;
 
   board_init();
@@ -94,7 +93,7 @@ void main(void) {
       next_send_time += SEND_INTERVAL_MS;
     }
 
-    s64_t remaining = next_send_time - k_uptime_get();
+    int64_t remaining = next_send_time - k_uptime_get();
     if (remaining < 0) {
       remaining = 0;
     }

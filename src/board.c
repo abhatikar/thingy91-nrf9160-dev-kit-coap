@@ -43,7 +43,7 @@ void board_init() {
 
 }
 
-void board_dump_modem_message(u8_t *buffer, int len) {
+void board_dump_modem_message(uint8_t *buffer, int len) {
 
   modem_sample(&last_message.modem);
   last_message.uptime = k_uptime_get() / 1000;
@@ -63,7 +63,7 @@ void board_dump_modem_message(u8_t *buffer, int len) {
     last_message.modem.imei);
 }
 
-void board_dump_message(u8_t *buffer, int len) {
+void board_dump_message(uint8_t *buffer, int len) {
 
   env_sensor_sample(&last_message.env_sensor);
   light_sensor_sample(&last_message.light_sensor);

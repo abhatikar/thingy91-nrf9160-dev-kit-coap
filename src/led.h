@@ -9,18 +9,18 @@
 #define LED_BLUE_PIN  31
 
 struct led_color {
-  u8_t c[3];
+  uint8_t c[3];
 };
 
 struct led_effect_step {
   struct led_color color;
-  u16_t substep_count;
-  u16_t substep_time;
+  uint16_t substep_count;
+  uint16_t substep_time;
 };
 
 struct led_effect {
   struct led_effect_step *steps;
-  u16_t step_count;
+  uint16_t step_count;
   bool loop_forever;
 };
 
@@ -30,8 +30,8 @@ typedef struct {
   size_t id;
   struct led_color color;
   const struct led_effect *effect;
-  u16_t effect_step;
-  u16_t effect_substep;
+  uint16_t effect_step;
+  uint16_t effect_substep;
 
   struct k_delayed_work work;
 } led_t;
