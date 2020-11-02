@@ -32,7 +32,7 @@ west build telenor-coap/ -b thingy91_nrf9160ns --pristine
 
 Change `thingy91_nrf9160ns` to `nrf9160dk_nrf9160ns` if you want to build for the nRF9160 DK instead of the Thingy:91.
 
-### 4. Find the correct .hex file
+### 4. Find the correct .hex-file
 
 You will find the final product under `build/zephyr/`. Depending on which device you want to flash you must choose the correct .hex-file:
 

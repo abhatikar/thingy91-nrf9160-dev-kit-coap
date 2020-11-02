@@ -6,7 +6,7 @@ manifest:
     - name: sdk-nrf
       path: nrf
       remote: nordic
-      revision: 91118ee73f48213a2fbb230721b3459279af7449
+      revision: 5522ca2b5f4c93eab5229f2f3f0e7bd08389cbe8
       import: true
   self:
     path: telenor-coap

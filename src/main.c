@@ -57,7 +57,7 @@ void main(void) {
   int err;
 
   board_init();
-  coap_init(AF_INET);
+  coap_init(AF_INET, NULL);
 
   led_set_effect(LED_PATTERN_NORMAL);
   LOG_INF("Board inited! %s", CONFIG_BOARD);
