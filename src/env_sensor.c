@@ -9,9 +9,9 @@
 #define LOG_LEVEL CONFIG_ENV_SENSOR_LOG_LEVEL
 LOG_MODULE_REGISTER(ENV_SENSOR);
 
-static struct device *env_dev = NULL;
+static const struct device *env_dev = NULL;
 
-struct device *env_sensor_init() {
+const struct device *env_sensor_init() {
 
   if (!env_dev) {
 

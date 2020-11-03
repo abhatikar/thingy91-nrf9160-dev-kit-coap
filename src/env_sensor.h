@@ -12,6 +12,6 @@ typedef struct {
   float gas_res;
 } env_sensor_t;
 
-struct device *env_sensor_init();
+const struct device *env_sensor_init();
 
 void env_sensor_sample(env_sensor_t *env_sensor);

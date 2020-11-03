@@ -9,9 +9,9 @@
 #define LOG_LEVEL CONFIG_LIGHT_SENSOR_LOG_LEVEL
 LOG_MODULE_REGISTER(LIGHT_SENSOR);
 
-static struct device *light_dev = NULL;
+static const struct device *light_dev = NULL;
 
-struct device *light_sensor_init() {
+const struct device *light_sensor_init() {
 
   if (!light_dev) {
 

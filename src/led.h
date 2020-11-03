@@ -25,7 +25,7 @@ struct led_effect {
 };
 
 typedef struct {
-  struct device *pwm_dev;
+  const struct device *pwm_dev;
 
   size_t id;
   struct led_color color;
@@ -122,6 +122,6 @@ enum led_pattern {
   LED_PATTERN_SENDING,
 };
 
-struct device *led_init();
+const struct device *led_init();
 
 void led_set_effect(enum led_pattern pattern);

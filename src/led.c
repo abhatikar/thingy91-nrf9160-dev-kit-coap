@@ -93,7 +93,7 @@ static void led_update(led_t *c_led) {
   }
 }
 
-struct device *led_init() {
+const struct device *led_init() {
 
   if (!led.pwm_dev) {
 

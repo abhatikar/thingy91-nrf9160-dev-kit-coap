@@ -12,6 +12,6 @@ typedef struct {
   int32_t ir;
 } light_sensor_t;
 
-struct device *light_sensor_init();
+const struct device *light_sensor_init();
 
 void light_sensor_sample(light_sensor_t *light_sensor);

@@ -1,8 +1,7 @@
 #include <stdlib.h>
+// #include <random/rand32.h>
 
-#define RAND_MAX 32767
-
-// 7 -> rand()
+// 7 -> rand() (possibly sys_rand32_get())
 
 int rand_int(int min, int max) {
   return 7 % (max - min + 1) + min;

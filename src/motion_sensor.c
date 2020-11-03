@@ -9,9 +9,9 @@
 #define LOG_LEVEL CONFIG_MOTION_SENSOR_LOG_LEVEL
 LOG_MODULE_REGISTER(MOTION_SENSOR);
 
-static struct device *motion_dev = NULL;
+static const struct device *motion_dev = NULL;
 
-struct device *motion_sensor_init() {
+const struct device *motion_sensor_init() {
 
   if (!motion_dev) {
 
