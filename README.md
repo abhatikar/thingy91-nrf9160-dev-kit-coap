@@ -8,6 +8,24 @@ http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.htm
 
 http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html#installing-west
 
+#### 1.1 Additional Instructions for Windows
+
+**CMake**
+
+- Download latest stable release here: https://cmake.org/download/
+- Installation instructions... TODO
+- E.g. make sure to check "add to PATH" if asked during installation.
+
+**Ninja**
+
+- Download latest binary here: https://github.com/ninja-build/ninja/releases
+- Place it under C:\ninja\ninja.exe
+- Add to PATH (how?)
+
+**Git**
+
+- Download and install for Windows: https://git-scm.com/download/win
+
 ### 2. Get the code
 
 Create a new folder on your computer and run the following command inside of it:
@@ -20,6 +38,14 @@ This will fetch the correct NCS version based on the `west.yml` file in this rep
 
 ```
 west update
+```
+
+You may also need to install required Python dependencies:
+
+```
+pip3 install -r zephyr/scripts/requirements.txt
+pip3 install -r nrf/scripts/requirements.txt
+pip3 install -r bootloader/mcuboot/scripts/requirements.txt
 ```
 
 ### 3. Compile

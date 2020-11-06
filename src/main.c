@@ -87,7 +87,7 @@ void main(void) {
 
       // Todo: make CoAP GET request
       err = coap_send_request(COAP_METHOD_GET, (struct sockaddr *)&remote_addr,
-                              NULL, NULL, NULL, &ccb);
+                              NULL, NULL, 0, &ccb);
       LOG_INF("GET request");
 
       next_send_time += SEND_INTERVAL_MS;
