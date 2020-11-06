@@ -11,7 +11,7 @@ http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.htm
 #### 1.1 Additional Instructions for Windows
 
 | Software | Description                                                                  |
-| -------- | ---------------------------------------------------------------------------- |
+| :------- | :--------------------------------------------------------------------------- |
 | `CMake`  | **1.** Download latest stable release: https://cmake.org/download/           |
 |          | **2.** Installation instructions... TODO                                     |
 |          | **3.** E.g. make sure to check "add to PATH" if asked during installation.   |
