@@ -4,21 +4,13 @@
 
 ### 1. Get the GNU Arm Embedded Toolchain & West
 
-http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html#installing-the-toolchain
+Follow each step for your operating system in the Nordic semiconductor guide:
 
-http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html#installing-west
+- [Toolchain](http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html#installing-the-toolchain)
 
-#### 1.1 Additional Instructions for Windows
+- [West](http://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/gs_installing.html#installing-west)
 
-| Software | Description                                                                  |
-| :------- | :--------------------------------------------------------------------------- |
-| `CMake`  | **1.** Download latest stable release: https://cmake.org/download/           |
-|          | **2.** Installation instructions... TODO                                     |
-|          | **3.** E.g. make sure to check "add to PATH" if asked during installation.   |
-| `Ninja`  | **1.** Download latest binary: https://github.com/ninja-build/ninja/releases |
-|          | **2.** Place it under C:\ninja\ninja.exe                                     |
-|          | **3.** Add to PATH (how?)                                                    |
-| `Git`    | **1.** Download and install for Windows: https://git-scm.com/download/win    |
+- Additional instructions for Windows [here](./README_WIN.md)
 
 ### 2. Get the code
 
