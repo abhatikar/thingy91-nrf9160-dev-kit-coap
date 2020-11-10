@@ -44,9 +44,21 @@ west build telenor-coap/ -b thingy91_nrf9160ns --pristine
 
 Change `thingy91_nrf9160ns` to `nrf9160dk_nrf9160ns` if you want to build for the nRF9160 DK instead of the Thingy:91.
 
-### 4. Find the correct .hex-file
+### 4. Flash
 
 You will find the final product under `build/zephyr/`. Depending on which device you want to flash you must choose the correct .hex-file:
 
 - Thingy:91 with MCUboot: `app_signed.hex`
 - nRF9160 DK: `merged.hex`
+
+#### Flash Thingy:91
+
+Use the nRF Connect Programmer desktop application to flash Thingy:91 in MCUboot mode with the `app_signed.hex` file.
+
+#### Flash nRF9160 DK
+
+Run the following command while the nRF9160 DK is connected via a USB cable:
+
+```
+west flash
+```
