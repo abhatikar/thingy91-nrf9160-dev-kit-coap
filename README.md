@@ -1,4 +1,6 @@
-# Thingy:91 / nRF9160 Dev-Kit CoAP Example Code
+# Thingy:91 / nRF9160 Dev-Kit CoAP Example Code  
+
+**NB! This code is for prototyping only. Not for deployment in production.**
 
 ## How-to: Compiling
 
